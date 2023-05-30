@@ -85,6 +85,7 @@ RUN chmod +x run.sh cron.sh
 ARG version
 #RUN pip install tibanna==$version
 RUN git clone https://github.com/babessell1/tibanna.git
+RUN pip install poetry
 RUN cd tibanna
 RUN poetry install
 RUN cd ..
