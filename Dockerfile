@@ -83,7 +83,11 @@ COPY run.sh .
 COPY cron.sh .
 RUN chmod +x run.sh cron.sh
 ARG version
-RUN pip install tibanna==$version
+#RUN pip install tibanna==$version
+RUN git clone https://github.com/babessell1/tibanna.git
+RUN cd tibanna
+RUN poetry install
+RUN cd ..
 
 # Move default docker daemon location to mounted EBS
 COPY daemon.json /etc/docker/daemon.json
