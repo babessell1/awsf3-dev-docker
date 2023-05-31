@@ -34,6 +34,12 @@ RUN apt update -y && apt upgrade -y &&  apt install -y \
     gnupg \
     lsb-release
 
+#RUN ln -s /usr/bin/python3.8 /usr/bin/python
+#RUN ln -s /usr/bin/pip3 /usr/bin/pip
+
+WORKDIR /usr/local/bin
+
+
 RUN curl micro.mamba.pm/install.sh | bash
 
 ENV PATH="${PATH}:/usr/local/bin/micromamba"
@@ -42,11 +48,6 @@ RUN /usr/local/bin/micromamba create -n tibanna python=3.8 poetry urllib3==1.20
 
 # activate snakemake
 RUN /usr/local/bin/micromamba activate tibanna
-
-#RUN ln -s /usr/bin/python3.8 /usr/bin/python
-#RUN ln -s /usr/bin/pip3 /usr/bin/pip
-
-WORKDIR /usr/local/bin
 
 # install docker inside docker
 RUN mkdir -p /etc/apt/keyrings
