@@ -75,6 +75,8 @@ RUN wget https://github.com/broadinstitute/cromwell/releases/download/53.1/cromw
 RUN wget https://github.com/broadinstitute/cromwell/releases/download/35/cromwell-35.jar
 RUN wget https://github.com/broadinstitute/cromwell/blob/develop/LICENSE.txt  # cromwell license
 
+RUN pip install urllib3==1.20
+
 # Caper - uses cromwell 59 under the hood
 RUN pip install caper==1.6.3
 
