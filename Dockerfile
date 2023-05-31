@@ -14,7 +14,7 @@ RUN apt update -y && apt upgrade -y &&  apt install -y \
     less \
     locales \
     make \
-    python3 \
+    python3.8 \
     python3-pip \
     time \
     unzip \
@@ -78,7 +78,15 @@ RUN wget https://github.com/broadinstitute/cromwell/blob/develop/LICENSE.txt  # 
 # Caper - uses cromwell 59 under the hood
 RUN pip install caper==1.6.3
 
-RUN pip install poetry
+
+RUN curl micro.mamba.pm/install.sh | bash
+
+ENV PATH="${PATH}:/usr/local/bin/micromamba"
+# download micromamba, python, snakemake
+RUN micromamba create -n tibanna python=3.8 poetry
+
+# activate snakemake
+RUN micromamba activate tibanna
 
 # awsf scripts
 COPY run.sh .
