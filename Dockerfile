@@ -83,10 +83,10 @@ RUN curl micro.mamba.pm/install.sh | bash
 
 ENV PATH="${PATH}:/usr/local/bin/micromamba"
 # download micromamba, python, snakemake
-RUN micromamba create -n tibanna python=3.8 poetry
+RUN /usr/local/bin/micromamba create -n tibanna python=3.8 poetry
 
 # activate snakemake
-RUN micromamba activate tibanna
+RUN /usr/local/bin/micromambamicromamba activate tibanna
 
 # awsf scripts
 COPY run.sh .
