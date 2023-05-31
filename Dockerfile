@@ -78,6 +78,8 @@ RUN wget https://github.com/broadinstitute/cromwell/blob/develop/LICENSE.txt  # 
 # Caper - uses cromwell 59 under the hood
 RUN pip install caper==1.6.3
 
+RUN pip install poetry
+
 # awsf scripts
 COPY run.sh .
 COPY cron.sh .
@@ -85,10 +87,8 @@ RUN chmod +x run.sh cron.sh
 ARG version
 #RUN pip install tibanna==$version
 RUN git clone https://github.com/babessell1/tibanna.git
-RUN pip install poetry
-WORKDIR /usr/local/bin/tibanna
-RUN poetry install
-RUN cd ..
+RUN cd tibanna && poetry install
+
 
 # Move default docker daemon location to mounted EBS
 COPY daemon.json /etc/docker/daemon.json
