@@ -34,7 +34,16 @@ RUN apt update -y && apt upgrade -y &&  apt install -y \
     gnupg \
     lsb-release
 
-RUN ln -s /usr/bin/python3.8 /usr/bin/python
+RUN curl micro.mamba.pm/install.sh | bash
+
+ENV PATH="${PATH}:/usr/local/bin/micromamba"
+# download micromamba, python, snakemake
+RUN /usr/local/bin/micromamba create -n tibanna python=3.8 poetry urllib3==1.20
+
+# activate snakemake
+RUN /usr/local/bin/micromamba activate tibanna
+
+#RUN ln -s /usr/bin/python3.8 /usr/bin/python
 #RUN ln -s /usr/bin/pip3 /usr/bin/pip
 
 WORKDIR /usr/local/bin
@@ -75,20 +84,8 @@ RUN wget https://github.com/broadinstitute/cromwell/releases/download/53.1/cromw
 RUN wget https://github.com/broadinstitute/cromwell/releases/download/35/cromwell-35.jar
 RUN wget https://github.com/broadinstitute/cromwell/blob/develop/LICENSE.txt  # cromwell license
 
-RUN pip install urllib3==1.20
-
 # Caper - uses cromwell 59 under the hood
 RUN pip install caper==1.6.3
-
-
-RUN curl micro.mamba.pm/install.sh | bash
-
-ENV PATH="${PATH}:/usr/local/bin/micromamba"
-# download micromamba, python, snakemake
-RUN /usr/local/bin/micromamba create -n tibanna python=3.8 poetry
-
-# activate snakemake
-RUN /usr/local/bin/micromambamicromamba activate tibanna
 
 # awsf scripts
 COPY run.sh .
