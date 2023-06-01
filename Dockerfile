@@ -42,19 +42,11 @@ WORKDIR /usr/local/bin
 
 RUN curl micro.mamba.pm/install.sh | bash
 
-ENV PATH="${PATH}:/usr/local/bin//mamba/bin/micromamba"
 # download micromamba, pytho/n, snakemake
+RUN ls /root/.local/bin/micromamba
 
-RUN pwd
-RUN ls
-RUN ls /root/micromamba/conda-meta
-RUN ls /root/.local/bin/
-#RUN ls /root/micromamba/bin
-
-RUN /usr/local/bin/mamba/bin/micromamba create -n tibanna python=3.8 poetry urllib3==1.20
-
-# activate snakemake
-RUN /usr/local/bin/mamba/bin/micromamba activate tibanna
+RUN /root/.local/bin/micromamba create -n tibanna python=3.8 poetry urllib3==1.20
+RUN /root/.local/bin/micromamba activate tibanna
 
 # install docker inside docker
 RUN mkdir -p /etc/apt/keyrings
