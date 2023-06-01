@@ -44,6 +44,11 @@ RUN curl micro.mamba.pm/install.sh | bash
 
 ENV PATH="${PATH}:/usr/local/bin//mamba/bin/micromamba"
 # download micromamba, python, snakemake
+
+RUN pwd
+RUN ls
+RUN ls /
+
 RUN /usr/local/bin/mamba/bin/micromamba create -n tibanna python=3.8 poetry urllib3==1.20
 
 # activate snakemake
