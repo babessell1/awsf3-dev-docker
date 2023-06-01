@@ -1,7 +1,5 @@
 FROM ubuntu:20.04
 
-FROM mambaorg/micromamba:1.4-jammy
-
 # general updates & installing necessary Linux components
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
@@ -18,6 +16,7 @@ RUN apt update -y && apt upgrade -y &&  apt install -y \
     make \
     python3.8 \
     python3-pip \
+    python3.8-dev \
     time \
     unzip \
     vim \
@@ -36,19 +35,11 @@ RUN apt update -y && apt upgrade -y &&  apt install -y \
     gnupg \
     lsb-release
 
-#RUN ln -s /usr/bin/python3.8 /usr/bin/python
-#RUN ln -s /usr/bin/pip3 /usr/bin/pip
+RUN apt-get update \
+    && apt-get install -y curl python3.8 python3.8-dev python3-pip
+
 
 WORKDIR /usr/local/bin
-
-
-#RUN curl micro.mamba.pm/install.sh | bash
-
-# download micromamba, pytho/n, snakemake
-#RUN ls /root/.local/bin/micromamba
-
-RUN /root/.local/bin/micromamba create -n tibanna python=3.8 poetry
-RUN /root/.local/bin/micromamba activate tibanna
 
 # install docker inside docker
 RUN mkdir -p /etc/apt/keyrings
@@ -95,9 +86,9 @@ COPY cron.sh .
 RUN chmod +x run.sh cron.sh
 ARG version
 #RUN pip install tibanna==$version
+RUN curl -sSL https://install.python-poetry.org | python3.8 -
 RUN git clone https://github.com/babessell1/tibanna.git
 RUN cd tibanna && poetry install
-
 
 # Move default docker daemon location to mounted EBS
 COPY daemon.json /etc/docker/daemon.json
