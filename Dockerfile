@@ -45,7 +45,7 @@ RUN curl micro.mamba.pm/install.sh | bash
 # download micromamba, pytho/n, snakemake
 RUN ls /root/.local/bin/micromamba
 
-RUN /root/.local/bin/micromamba create -n tibanna python=3.8 poetry urllib3==1.20
+RUN /root/.local/bin/micromamba create -n tibanna python=3.8 poetry
 RUN /root/.local/bin/micromamba activate tibanna
 
 # install docker inside docker
