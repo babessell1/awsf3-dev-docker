@@ -88,7 +88,7 @@ ARG version
 #RUN pip install tibanna==$version
 RUN curl -sSL https://install.python-poetry.org | python3.8 -
 RUN git clone https://github.com/babessell1/tibanna.git
-RUN cd tibanna && poetry install
+RUN cd tibanna && /root/.local/bin/poetry install
 
 # Move default docker daemon location to mounted EBS
 COPY daemon.json /etc/docker/daemon.json
