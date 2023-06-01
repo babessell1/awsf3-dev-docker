@@ -1,5 +1,7 @@
 FROM ubuntu:20.04
 
+FROM mambaorg/micromamba:1.4-jammy
+
 # general updates & installing necessary Linux components
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
@@ -40,10 +42,10 @@ RUN apt update -y && apt upgrade -y &&  apt install -y \
 WORKDIR /usr/local/bin
 
 
-RUN curl micro.mamba.pm/install.sh | bash
+#RUN curl micro.mamba.pm/install.sh | bash
 
 # download micromamba, pytho/n, snakemake
-RUN ls /root/.local/bin/micromamba
+#RUN ls /root/.local/bin/micromamba
 
 RUN /root/.local/bin/micromamba create -n tibanna python=3.8 poetry
 RUN /root/.local/bin/micromamba activate tibanna
