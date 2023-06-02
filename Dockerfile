@@ -207,7 +207,7 @@ RUN pip install \
     websocket-client==1.5.2 \
     wheel==0.40.0 \
     xdg==6.0.0 \
-    zipp==3.15.04
+    zipp==3.15.0
 
 # awsf scripts
 COPY run.sh .
