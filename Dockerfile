@@ -78,7 +78,7 @@ RUN wget https://github.com/broadinstitute/cromwell/releases/download/35/cromwel
 RUN wget https://github.com/broadinstitute/cromwell/blob/develop/LICENSE.txt  # cromwell license
 
 # Caper - uses cromwell 59 under the hood
-RUN pip install urllib3==1.26.16
+RUN pip install urllib3==1.25.11
 RUN pip install caper==1.6.3
 
 # awsf scripts
