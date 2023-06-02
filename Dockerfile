@@ -84,6 +84,7 @@ RUN pip install docker==4.*
 #RUN pip install PyYAML==5.3.*
 #RUN pip install requests==2.26.0
 RUN pip install caper==1.6.3
+RUN pip install PyYAML==5.3.1
 #RUN pip install urllib3==1.25.*
 #RUN pip install PyYAML==5.3.*
 #RUN pip install requests==2.26.0
