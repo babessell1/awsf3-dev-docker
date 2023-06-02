@@ -79,7 +79,7 @@ RUN wget https://github.com/broadinstitute/cromwell/blob/develop/LICENSE.txt  # 
 
 # Caper - uses cromwell 59 under the hood
 
-RUN pip install docker==5.*
+RUN pip install docker==4.*
 #RUN pip install urllib3==1.25.*
 #RUN pip install PyYAML==5.3.*
 #RUN pip install requests==2.26.0
