@@ -78,7 +78,7 @@ RUN wget https://github.com/broadinstitute/cromwell/releases/download/35/cromwel
 RUN wget https://github.com/broadinstitute/cromwell/blob/develop/LICENSE.txt  # cromwell license
 
 # Caper - uses cromwell 59 under the hood
-RUN pip install 5.3.1
+RUN pip install PyYAML==5.3.1
 RUN pip install docker==4.*
 #RUN pip install urllib3==1.25.*
 #RUN pip install PyYAML==5.3.*
