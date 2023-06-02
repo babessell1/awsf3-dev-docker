@@ -65,7 +65,6 @@ RUN ARCH="$(dpkg --print-architecture)" && \
     wget https://tibanna-dependencies.s3.amazonaws.com/goofys/v0.24.0/${ARCH}/goofys && chmod +x goofys
 
 # python packages
-RUN pip install urllib3==1.26.16
 RUN pip install boto3==1.15 awscli==1.18.152 botocore==1.18.11
 RUN pip install psutil==5.7.3
 RUN pip install cwltool==3.1.20211103193132
@@ -79,6 +78,7 @@ RUN wget https://github.com/broadinstitute/cromwell/releases/download/35/cromwel
 RUN wget https://github.com/broadinstitute/cromwell/blob/develop/LICENSE.txt  # cromwell license
 
 # Caper - uses cromwell 59 under the hood
+RUN pip install urllib3==1.26.16
 RUN pip install caper==1.6.3
 
 # awsf scripts
