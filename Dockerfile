@@ -219,7 +219,7 @@ RUN curl -sSL https://install.python-poetry.org | python3.8 -
 RUN git clone https://github.com/babessell1/tibanna.git
 RUN cd tibanna && /root/.local/bin/poetry install
 ENV PATH="/root/.venv/bin:$PATH"
-RUN echo $(ls /usr/local/bin/tibanna/.venv/bin)
+RUN echo $(ls -a /usr/local/bin/tibanna)
 
 
 # Move default docker daemon location to mounted EBS
